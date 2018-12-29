@@ -1,20 +1,66 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="container mt-5 mb-5 mb-5 ">
+  <div class="row">
+    <form (ngSubmit)="addNotes(f.value)" #f="ngForm" class="col-md-12">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" name="name" id="" ngModel class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Sticky Notes</label>
+        <textarea name="note" ngModel class="form-control" id="" cols="30" rows="3"></textarea>
+      </div>
+      <button  class="btn btn-primary">
+        Add Notes <i class="fa ml-2 fa-plus"></i>
+      </button>
+    </form>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <h3>Issues</h3>
+      <div class=" notes-container" cdkDropList #issuesList="cdkDropList" [cdkDropListData]="issues"
+        [cdkDropListConnectedTo]="[progressList,completedList]" (cdkDropListDropped)="drop($event)">
+        <div class="card single_notes" *ngFor="let item of issues;" cdkDrag>
+          <div class="sticky-notes">
+            <div class="card-body">
+              <span (click)="deleteNote(item.id,'issues')" class="icon"> <i class="fa fa-times"> </i></span>
+              <p class="card-text">{{item.text}}</p>
+              <h5 class="card-title">{{item.name}}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div class="col-md-4">
+      <h3>Progress</h3>
+      <div class=" notes-container" cdkDropList #progressList="cdkDropList" [cdkDropListData]="progress"
+        [cdkDropListConnectedTo]="[issuesList,completedList]" (cdkDropListDropped)="drop($event)">
+        <div class="card single_notes" *ngFor="let item of progress" cdkDrag>
+          <div class="sticky-notes">
+            <div class="card-body">
+              <span (click)="deleteNote(item.id,'progress')" class="icon"> <i class="fa fa-times"> </i></span>
+              <p class="card-text">{{item.text}}</p>
+              <h5 class="card-title">{{item.name}}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <h3>Completed</h3>
+      <div class=" notes-container" cdkDropList #completedList="cdkDropList" [cdkDropListData]="completed"
+        [cdkDropListConnectedTo]="[issuesList,progressList]" (cdkDropListDropped)="drop($event)">
+        <div class="card single_notes" *ngFor="let item of completed" cdkDrag>
+          <div class="sticky-notes">
+            <div class="card-body">
+              <span (click)="deleteNote(item.id,'completed')" class="icon"> <i class="fa fa-times"> </i></span>
+              <p class="card-text">{{item.text}}</p>
+              <h5 class="card-title">{{item.name}}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

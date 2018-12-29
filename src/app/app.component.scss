@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis:400,600,700,800');
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+body {
+   font-family: 'Dosis', sans-serif;
+   background: #F6F7FB;
+}
+h3 , p {
+   font-family: 'Dosis', sans-serif;
+}
+h5 {
+   font-family: 'Permanent Marker', cursive;
+}
+.notes-container {
+    border: 1px solid #000;
+    margin: 11px;
+    float: left;
+    min-height: 370px;
+    width: 100%;
+}
+h3 {
+   text-align: center
+}
+
+ .single_notes{
+    color: #fff;
+    display: flex;
+    width: 45%;
+    float: left;
+    margin: 7px;
+    min-height: 170px;
+    cursor: pointer;
+    -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
+  /* Safari+Chrome */
+  -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+  /* Opera */
+  box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+  color: #000
+ }
+
+ .single_notes:nth-child(1n){
+    background: #FEE21D;
+ }
+ .single_notes:nth-child(2n){
+    background: #FB9494;
+ }
+ .single_notes:nth-child(3n){
+    background: #9ED769;
+ }
+ .single_notes:nth-child(4n){
+    background: #1DC4F8;
+ }
+ .single_notes:nth-child(5n){
+    background: #CCFFCC;
+ }
+
+
+
+ p {
+    font-size: 12px;
+ }
+ .icon {
+    position: absolute;
+    top: 0;
+    right: 6px;
+    font-weight: normal;
+    font-size: 11px;
+ }
+
+.card-body {
+   padding: 9px;
+}
